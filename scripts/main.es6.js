@@ -90,8 +90,8 @@ class StickyNote extends HTMLElement {
             } else {
                 date = new Date();
             }
-            var month = StickyNote.MONTHS[date.getMonth()];
-            this.dateElement.textContent = 'Created on ' + month + ' ' + date.getDate();
+            let month = StickyNote.MONTHS[date.getMonth()];
+            this.dateElement.textContent = 'Created on ${month} ${date.getDate()}';
         }
     }
 
@@ -111,11 +111,11 @@ class StickyNote extends HTMLElement {
 
 // Initial content of the element.
 StickyNote.TEMPLATE =
-    '<div class="message"></div>' +
-    '<div class="date"></div>' +
-    '<button class="delete mdl-button mdl-js-button mdl-js-ripple-effect">' +
-    'Delete' +
-    '</button>';
+    `<div class="message"></div>
+    <div class="date"></div>
+    <button class="delete mdl-button mdl-js-button mdl-js-ripple-effect">
+    Delete
+    </button>`;
 
 // StickyNote elements top level style classes.
 StickyNote.CLASSES = ['mdl-cell--4-col-desktop', 'mdl-card__supporting-text', 'mdl-cell--12-col',
