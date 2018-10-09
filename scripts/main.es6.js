@@ -6,10 +6,10 @@ class StickyNotesApp {
         this.notesSectionTitle = document.getElementById('notes-section-title');
 
         // Saves notes on button click.
-        this.addNoteButton.addEventListener('click', this.saveNote.bind(this));
+        this.addNoteButton.addEventListener('click', () => this.saveNote());
 
         // Toggle for the button.
-        this.noteMessageInput.addEventListener('keyup', this.toggleButton.bind(this));
+        this.noteMessageInput.addEventListener('keyup', () => this.toggleButton());
 
         // Loads all the notes.
         for (var key in localStorage) {
@@ -17,9 +17,7 @@ class StickyNotesApp {
         }
 
         // Listen for updates to notes from other windows.
-        window.addEventListener('storage', function (e) {
-            this.displayNote(e.key, e.newValue);
-        }.bind(this));
+        window.addEventListener('storage',  e => this.displayNote(e.key, e.newValue));
     }
 
     saveNote() {
@@ -68,9 +66,7 @@ class StickyNotesApp {
 }
 
 // On load start the app.
-window.addEventListener('load', function () {
-    new StickyNotesApp();
-});
+window.addEventListener('load', () => new StickyNotesApp());
 
 class StickyNote extends HTMLElement {
     createdCallback() {
@@ -81,7 +77,7 @@ class StickyNote extends HTMLElement {
         this.messageElement = this.querySelector('.message');
         this.dateElement = this.querySelector('.date');
         this.deleteButton = this.querySelector('.delete');
-        this.deleteButton.addEventListener('click', this.deleteNote.bind(this));
+        this.deleteButton.addEventListener('click', () => this.deleteNote());
     }
 
     // Fires when an attribute of the element is added/deleted/modified.
