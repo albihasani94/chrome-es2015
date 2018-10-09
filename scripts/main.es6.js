@@ -90,8 +90,13 @@ class StickyNote extends HTMLElement {
             } else {
                 date = new Date();
             }
-            let month = StickyNote.MONTHS[date.getMonth()];
-            this.dateElement.textContent = 'Created on ${month} ${date.getDate()}';
+            let dateFormatterOptions = {
+                day: 'numeric',
+                month: 'short'
+            };
+            let dateFormatter = new Intl.DateTimeFormat("en-US", dateFormatterOptions);
+            let shortDate = dateFormatter.format(date);
+            this.dateElement.textContent = `Created on ${shortDate}`;
         }
     }
 
@@ -120,9 +125,5 @@ StickyNote.TEMPLATE =
 // StickyNote elements top level style classes.
 StickyNote.CLASSES = ['mdl-cell--4-col-desktop', 'mdl-card__supporting-text', 'mdl-cell--12-col',
     'mdl-shadow--2dp', 'mdl-cell--4-col-tablet', 'mdl-card', 'mdl-cell', 'sticky-note'];
-
-// List of shortened month names.
-StickyNote.MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov',
-    'Dec'];
 
 document.registerElement('sticky-note', StickyNote);
